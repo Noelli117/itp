@@ -1,1 +1,1 @@
-Sorry Rachel for my bad drawing, just wanted to make it simple. This is literally a "Hello world!" project for me since I never used processing before.Therefore I thought a smile would be good as my picture for the midterm project.
+Sorry Rachel for my bad drawing, just wanted to make it simple. This is literally a "Hello world!" project for me since I never used processing before.Therefore I thought a smile would be good as my visual object for the midterm project.
