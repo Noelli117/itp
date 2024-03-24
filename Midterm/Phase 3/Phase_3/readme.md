@@ -1,4 +1,4 @@
-Pretty much the same process as phase 1, except for the part of creating drawObject function, push and pop functions were used as a pair
+Pretty much the same process as phase 2, except for the part of creating drawObject function, push and pop functions were used as a pair
 to save and restore the drawing style settings and transformation.
 
 def setup():

@@ -43,4 +43,4 @@ def drawObject(x,y,s):
     arc(25,40,10,10,radians(0),radians(180))
     pop()
 
-#So I put a nested for loop in the draw function, and put the y loop inside the for x loop as a inner loop, which solved the problem.
+#So I put a nested for loop in the draw function, and put the y loop inside the for x loop as a inner loop which solved the problem.
