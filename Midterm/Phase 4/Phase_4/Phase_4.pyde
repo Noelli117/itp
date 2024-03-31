@@ -6,7 +6,7 @@ def setup():
 def draw():
     for x in range (100):
         for y in range(100):
-            drawObject(x*100,y*100,2)
+            drawObject(x*10,y*100,1)
 
 def drawObject(x,y,s):
     push()
