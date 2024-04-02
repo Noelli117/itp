@@ -1,32 +1,49 @@
 import numpy as np
-import scipy.signal as signal
 import sounddevice as sd
 
-def generate_fm_signal(duration, sampling_freq, carrier_freq, modulator_freq, modulation_index):
-    # Generate time array
-    t = np.linspace(0, duration, int(duration * sampling_freq), endpoint=False)
+def generate_sine_wave(freq, duration, sample_rate):
+    """
+    Generate a sine wave signal.
 
-    # Generate modulating signal
-    modulator_signal = np.sin(2 * np.pi * modulator_freq * t)
+    Parameters:
+        freq (float): Frequency of the sine wave.
+        duration (float): Duration of the signal in seconds.
+        sample_rate (int): Sample rate of the signal.
 
-    # Generate carrier signal
-    carrier_signal = np.sin(2 * np.pi * carrier_freq * t + modulation_index * np.sin(2 * np.pi * modulator_freq * t))
+    Returns:
+        numpy.ndarray: Sine wave signal.
+    """
+    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
+    return np.sin(2 * np.pi * freq * t)
 
-    # FM signal is simply the product of carrier and modulator
-    fm_signal = carrier_signal
+def fm_synthesizer(carrier_freq, modulator_freq, modulation_index, duration, sample_rate):
+    """
+    Generate a Frequency Modulated (FM) signal.
 
-    return fm_signal
+    Parameters:
+        carrier_freq (float): Frequency of the carrier signal.
+        modulator_freq (float): Frequency of the modulating signal.
+        modulation_index (float): Modulation index.
+        duration (float): Duration of the signal in seconds.
+        sample_rate (int): Sample rate of the signal.
 
-def play_audio(signal, sampling_freq):
-    sd.play(signal, samplerate=sampling_freq)
-    sd.wait()
+    Returns:
+        numpy.ndarray: FM signal.
+    """
+    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
+    carrier_wave = generate_sine_wave(carrier_freq, duration, sample_rate)
+    modulator_wave = generate_sine_wave(modulator_freq, duration, sample_rate)
+    return np.sin(2 * np.pi * (carrier_freq * t + modulation_index * np.sin(2 * np.pi * modulator_freq * t)))
 
-if __name__ == "__main__":
-    duration = 3  # Duration of the signal in seconds
-    sampling_freq = 44100  # Sampling frequency in Hz
-    carrier_freq = 440  # Frequency of the carrier signal in Hz
-    modulator_freq = 5  # Frequency of the modulating signal in Hz
-    modulation_index = 10  # Modulation index
+# Example usage
+carrier_freq = 100.0  # Frequency of the carrier signal (Hz)
+modulator_freq = 120.0  # Frequency of the modulating signal (Hz)
+modulation_index = 30.0  # Modulation index
+duration = 2  # Duration of the signal (seconds)
+sample_rate = 44100  # Sample rate of the signal (samples per second)
 
-    fm_signal = generate_fm_signal(duration, sampling_freq, carrier_freq, modulator_freq, modulation_index)
-    play_audio(fm_signal, sampling_freq)
+fm_signal = fm_synthesizer(carrier_freq, modulator_freq, modulation_index, duration, sample_rate)
+
+# Play the FM signal
+sd.play(fm_signal, sample_rate)
+sd.wait()
