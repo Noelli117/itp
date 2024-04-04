@@ -1,49 +1,46 @@
 import numpy as np
 import sounddevice as sd
+import pygame
+from pygame.locals import *
 
-def generate_sine_wave(freq, duration, sample_rate):
-    """
-    Generate a sine wave signal.
+# Initialize pygame
+pygame.init()
 
-    Parameters:
-        freq (float): Frequency of the sine wave.
-        duration (float): Duration of the signal in seconds.
-        sample_rate (int): Sample rate of the signal.
+# Initialize the game controller
+pygame.joystick.init()
+joystick = pygame.joystick.Joystick(0)
+joystick.init()
 
-    Returns:
-        numpy.ndarray: Sine wave signal.
-    """
-    t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
-    return np.sin(2 * np.pi * freq * t)
+# Define initial parameters
+carrier_freq = 440.0
+modulator_freq = 10.0
+modulation_index = 10.0
+duration = 2
+sample_rate = 44100
 
+# Function to generate FM signal
 def fm_synthesizer(carrier_freq, modulator_freq, modulation_index, duration, sample_rate):
-    """
-    Generate a Frequency Modulated (FM) signal.
-
-    Parameters:
-        carrier_freq (float): Frequency of the carrier signal.
-        modulator_freq (float): Frequency of the modulating signal.
-        modulation_index (float): Modulation index.
-        duration (float): Duration of the signal in seconds.
-        sample_rate (int): Sample rate of the signal.
-
-    Returns:
-        numpy.ndarray: FM signal.
-    """
     t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
-    carrier_wave = generate_sine_wave(carrier_freq, duration, sample_rate)
-    modulator_wave = generate_sine_wave(modulator_freq, duration, sample_rate)
     return np.sin(2 * np.pi * (carrier_freq * t + modulation_index * np.sin(2 * np.pi * modulator_freq * t)))
 
-# Example usage
-carrier_freq = 100.0  # Frequency of the carrier signal (Hz)
-modulator_freq = 120.0  # Frequency of the modulating signal (Hz)
-modulation_index = 30.0  # Modulation index
-duration = 2  # Duration of the signal (seconds)
-sample_rate = 44100  # Sample rate of the signal (samples per second)
+# Main loop
+running = True
+while running:
+    for event in pygame.event.get():
+        if event.type == QUIT:
+            running = False
 
-fm_signal = fm_synthesizer(carrier_freq, modulator_freq, modulation_index, duration, sample_rate)
+    # Update parameters based on controller input
+    carrier_freq = joystick.get_axis(0) * 1000.0  # Map joystick X-axis to carrier frequency
+    modulator_freq = joystick.get_axis(1) * 1000.0  # Map joystick Y-axis to modulator frequency
+    modulation_index = (joystick.get_axis(2) + 1) * 50.0  # Map joystick Z-axis to modulation index
 
-# Play the FM signal
-sd.play(fm_signal, sample_rate)
-sd.wait()
+    # Generate FM signal
+    fm_signal = fm_synthesizer(carrier_freq, modulator_freq, modulation_index, duration, sample_rate)
+
+    # Play the FM signal
+    sd.play(fm_signal, sample_rate)
+    sd.wait()
+
+# Clean up
+pygame.quit()
