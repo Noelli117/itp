@@ -18,9 +18,10 @@ modulation_index = 10.0
 duration = 2
 sample_rate = 44100
 
-# Function to generate FM signal
+# Function 
 def fm_synthesizer(carrier_freq, modulator_freq, modulation_index, duration, sample_rate):
     t = np.linspace(0, duration, int(sample_rate * duration), endpoint=False)
+    # sin(2pi*(f_c*t+m*sin(2pi*f_m*t)))
     return np.sin(2 * np.pi * (carrier_freq * t + modulation_index * np.sin(2 * np.pi * modulator_freq * t)))
 
 # Main loop
