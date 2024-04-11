@@ -1,3 +1,5 @@
+#Fm synth example from Chatgpt:
+
 import numpy as np
 import pyaudio
 
