@@ -1,13 +1,26 @@
 import numpy as np
-from scipy.io.wavfile import write
 import sounddevice as sd
-import time
+
 
 #Parameters that controls the waveform:
 f_s = 44100
-duration_s = 5.0
-f_c= 440.0
-f_m= 220.0
-k = 25
+duration_s = 5
+f_c= 1000.0
+f_m= 2000.0
+k = 10
 #f_s=sample rate,duration_s=duration time in seconds,f_c=carrier frequency, f_m=modulation frequency,k=modulator index
 
+#Generated time array
+t = np.linspace(0, duration_s, int(f_s * duration_s), False)
+
+#The actual function:
+carrier=np.sin(2 * np.pi * f_c * t)
+modulator=np.sin(2 * np.pi * f_m* t)
+waveform=np.sin(2 * np.pi * (carrier + k * modulator) * t)
+
+#Normalizing the waveform:
+waveform /= np.max(np.abs(waveform))
+
+#Play it out:
+sd.play(waveform, f_s)
+sd.wait()

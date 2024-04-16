@@ -1,34 +1,26 @@
-#Fm synth example from Chatgpt:
-
 import numpy as np
-import pyaudio
+import sounddevice as sd
 
-class FMsynth:
-    def __init__(self, sample_rate=44100):
-        self.sample_rate = sample_rate
-        self.stream = pyaudio.PyAudio().open(format=pyaudio.paFloat32,
-                                              channels=1,
-                                              rate=sample_rate,
-                                              output=True)
+# Constants
+sample_rate = 44100
+duration = 5  # seconds
+freq_carrier = 440  # Carrier frequency (Hz)
+freq_modulator = 220  # Modulator frequency (Hz)
+modulation_index = 5  # Modulation index
 
-    def generate_wave(self, freq, duration):
-        t = np.arange(0, duration, 1 / self.sample_rate)
-        modulator = np.sin(2 * np.pi * 5 * t)  # Modulator frequency = 5 Hz
-        carrier = np.sin(2 * np.pi * freq * t + 100 * modulator)  # Modulate the carrier frequency
-        return carrier
+# Generate time array
+t = np.linspace(0, duration, int(sample_rate * duration), False)
 
-    def play_wave(self, wave):
-        self.stream.write(wave.astype(np.float32).tobytes())
+# Generate carrier and modulator waveforms
+carrier_wave = np.sin(2 * np.pi * freq_carrier * t)
+modulator_wave = np.sin(2 * np.pi * freq_modulator * t)
 
-    def close(self):
-        self.stream.stop_stream()
-        self.stream.close()
-        pyaudio.PyAudio().terminate()
+# FM synthesis
+fm_wave = np.sin(2 * np.pi * (freq_carrier + modulation_index * modulator_wave) * t)
 
-if __name__ == "__main__":
-    synth = FMsynth()
-    freq = 440  # Frequency of the carrier wave (A4 note)
-    duration = 2  # Duration of the sound in seconds
-    wave = synth.generate_wave(freq, duration)
-    synth.play_wave(wave)
-    synth.close()
+# Normalize the waveform
+fm_wave /= np.max(np.abs(fm_wave))
+
+# Play the FM waveform
+sd.play(fm_wave, sample_rate)
+sd.wait()
