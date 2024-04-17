@@ -4,10 +4,10 @@ import sounddevice as sd
 
 #Parameters that controls the waveform:
 f_s = 44100
-duration_s = 5
-f_c= 1000.0
-f_m= 2000.0
-k = 10
+duration_s = 3
+f_c= 200.0
+f_m= 11000.0
+k = 20
 #f_s=sample rate,duration_s=duration time in seconds,f_c=carrier frequency, f_m=modulation frequency,k=modulator index
 
 #Generated time array
