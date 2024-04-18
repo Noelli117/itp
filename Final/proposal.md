@@ -22,12 +22,11 @@ In a sentence (or list of features), define a BETTER outcome for your final proj
 A basic FM synth that can produce sound.
 
 In a sentence (or list of features), define a BEST outcome for your final project. I.e., what do you HOPE to accomplish before the final project's deadline?
-After create a basic FM synth, I will try to connect my Xbox game controller with the parameters on the synth, and do sound design just like playing video games.
+A usable FM synth that could produce sound.
 
 In a paragraph or more, outline your next steps. What new skills will you need to acquire? What topics will you need to research?
 1.Try to install all the libries I need for the project (e.g. numpy and sounddevice...)
 2.Try to understand how FM formula works and try to convert it to codes.
-3.Hopely figure out a way that I could connect my game controller with those parameters.
 
 List at least 3 resources you know you will use in developing your project
 1.Chatpgt
