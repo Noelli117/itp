@@ -1,8 +1,8 @@
 //Defining function for printing the chessboard.
 function printChessboard(size) {
     let board = ''; //Initializing the variable.
-    for (let row = 0; row < size; row++) { //Same nested forloop thing we had used in the pyramid project.
-        for (let col = 0; col < size; col++) {
+    for (let row = 0; row < size; row = row + 1) { //Same nested forloop thing we had used in the pyramid project.
+        for (let col = 0; col < size; col = col + 1) {
             if ((row + col) % 2 === 0) {//Determining where to put # or space;add space when it's even, otherwise #.
                 board += ' ';
             } else {
