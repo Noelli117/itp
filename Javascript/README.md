@@ -1,11 +1,11 @@
 
-"function printChessboard(size) {
-    let board = ''; "
-//First step is to set up the function 'printChessboard' that takes single parameter 'size',pretty much the same as python.
+function printChessboard(size) {
+    let board = ''; 
+//First step is to set up the function 'printChessboard' that takes single parameter 'size'.
     
 
-    for (let row = 0; row < size; row++) {  
-        for (let col = 0; col < size; col++) {
+    for (let row = 0; row < size; row = row + 1) {  
+        for (let col = 0; col < size; col = col + 1) {
             if ((row + col) % 2 === 0) {
                 board += ' ';
             } else {
@@ -16,7 +16,7 @@
             }
         }
     }
-//Same nested forloop thing we had used in the pyramid project.The outer loop (for (let row = 0; row < size; row = row + 1)) iterates over each row, and the inner loop (for (let col = 0; col < size; col = col + 1)) iterates over each column within that row.
+//Same nested forloop thing we had done in the pyramid project.The outer loop (for (let row = 0; row < size; row = row + 1)) iterates over each row, and the inner loop (for (let col = 0; col < size; col = col + 1)) iterates over each column within that row.
 
 //Within the inner loop, I used the expression (row + col) % 2 === 0 to determine whether to add a space or a # character. If the sum of the row and column is even, add a space; else, add a #.The % operator is the modulo operator, which calculates the remainder of the division of the left parameters (row + col in this case) by the right parameters (2). Since we're using 2, this effectively checks whether the sum is an even number or an odd number. If the sum is even, the remainder when divided by 2 is 0; if it's odd, the remainder is 1.Finally, the === operator checks whether the result of the modulo operation ((row + col) % 2) is exactly equal to 0. This comparison returns true if the sum is even (and thus divisible by 2 with no remainder), and false if the sum is odd.
 
