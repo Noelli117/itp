@@ -29,6 +29,7 @@ waveform = np.sin(2 * np.pi * (carrier + k * modulator) * t)
 #In FM, the carrier wave's frequency is modulated by the instantaneous amplitude of the modulating wave (the modulator). The term carrier + k * modulator combines the carrier wave and the modulated component, where k is the modulation index，which is frequency deviation divided by modulator frequency.
 
 waveform /= np.max(np.abs(waveform))
+#I used GPT as a reference for this step because I could not get any sound at the begining, so I threw these whole programe into GPT and let it debug for me, and it gave me this line of code
 #This line normalizes the waveform by dividing each sample by the maximum absolute value in the waveform. This ensures that the waveform's amplitude stays within the valid range (-1 to 1).
 
 sd.play(waveform, f_s)
