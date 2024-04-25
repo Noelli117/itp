@@ -7,8 +7,8 @@ import sounddevice as sd
 f_s = 44100
 duration_s = 3
 f_c= 400.0
-f_m= 10000.0
-k = 10
+f_m= 1000.0
+k = 15
 #f_s=sample rate,duration_s=duration time in seconds,f_c=carrier frequency, f_m=modulation frequency,k=modulator index
 
 #Generated time array
