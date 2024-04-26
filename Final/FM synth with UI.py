@@ -1,8 +1,10 @@
+#Importing libries
 import tkinter as tk
 from tkinter import ttk
 import numpy as np
 import sounddevice as sd
 
+#Defining function for FM
 def generate_waveform():
     global waveform, f_s, duration_s, f_c, f_m, k
     t = np.linspace(0, duration_s, int(f_s * duration_s), False)
@@ -25,6 +27,7 @@ def update_parameters():
     k = float(modulation_index_entry.get())
     generate_waveform()
 
+#UI setup
 root = tk.Tk()
 root.title("Waveform Generator")
 
