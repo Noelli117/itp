@@ -31,6 +31,7 @@ f_c=Carrier frequency in Hz.
 f_m=Modulation frequency in Hz.
 k=Modulator index,the modulation index is defined as the ratio of frequency deviation to the modulating frequency.It determines the extent to which the carrier wave's frequency or phase varies in response to changes in the modulating signal's amplitude.
 
+# Explaination of function above:
 t = np.linspace(0, duration_s, int(f_s * duration_s), False)
 #This line creates a time array t using NumPy's linspace function. It starts from 0 seconds, ends at duration_s seconds, and contains f_s * duration_s samples.The time array is set up to create a sequence of time points that correspond to the duration of the waveform.
 
@@ -67,19 +68,18 @@ update_parameters(): This function is triggered when the user clicks the "Update
 root = tk.Tk()
 root.title("Waveform Generator")
 
-
 # Main GUI setup
 root = tk.Tk(): Creates the main window for the GUI application.
 root.title("Waveform Generator"): Sets the title of the window.
 
-# Defining parameters
+# Initializing parameters
 f_s = 44100
 duration_s = 3
 f_c = 400.0
 f_m = 100.0
 k = 5
 
-#Generate initial waveform
+# Generate initial waveform
 generate_waveform()
 
 # UI Elements
