@@ -5,7 +5,7 @@ import sounddevice as sd
 
 #Parameters that controls the waveform:
 f_s = 44100
-duration_s = 1
+duration_s = 3
 f_c= 400.0
 f_m= 100.0
 k = 5
