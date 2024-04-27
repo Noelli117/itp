@@ -83,6 +83,7 @@ k = 5
 generate_waveform()
 
 # UI Elements
+I asked gpt how to setup these labels and button:
 sample_rate_label = tk.Label(root, text="Sample Rate:")
 #Labels are used to display static text or instructions to the user.
 In this code, sample_rate_label is a label widget created using tk.Label that displays the text "Sample Rate:".
