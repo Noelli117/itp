@@ -88,12 +88,21 @@ sample_rate_label = tk.Label(root, text="Sample Rate:")
 In this code, sample_rate_label is a label widget created using tk.Label that displays the text "Sample Rate:".
 
 sample_rate_label.grid(row=0, column=0)
+#'.grid(row=0, column=0)': This part of the code is using the .grid() method to specify the positioning of the sample_rate_label within the GUI. In GUI frameworks like Tkinter (for Python), the .grid() method is used to arrange widgets in rows and columns within a grid layout.
+'row=0': This specifies that the widget should be placed in the 0th row of the grid. Rows are numbered starting from 0, so the first row is indexed as 0.
+'column=0': This specifies that the widget should be placed in the 0th column of the grid. Similarly, columns are also indexed starting from 0.
 
 sample_rate_entry = ttk.Entry(root)
 #Entry fields provide a space for users to input data, such as numbers or text.
 sample_rate_entry is an entry field widget created using ttk.Entry where users can input the sample rate value.
 sample_rate_entry.grid(row=0, column=1)
+#Same as above.
+
 sample_rate_entry.insert(0, str(f_s))
+#sample_rate_entry: This seems to be a variable or object representing an entry widget in the GUI. An entry widget is typically used to allow users to input or edit text.
+.insert(0, str(f_s)): This part of the code is using the .insert() method to insert text into the sample_rate_entry widget.
+0: This indicates the index position at which the text will be inserted. In this case, 0 means the text will be inserted at the beginning of the entry widget, effectively replacing any existing text.
+str(f_s): This converts the value of f_s (which seems to be a variable) into a string. The str() function is used to convert non-string objects into strings so they can be displayed or manipulated as text.
 
 duration_label = tk.Label(root, text="Duration (s):")
 duration_label.grid(row=1, column=0)
@@ -119,12 +128,16 @@ modulation_index_entry = ttk.Entry(root)
 modulation_index_entry.grid(row=4, column=1)
 modulation_index_entry.insert(0, str(k))
 
-#Applying the same principle on every parameters in the UI
+# Pretty much just copy and paste these lines and replace variable with other parameters.
 
 update_button = ttk.Button(root, text="Update Parameters", command=update_parameters)
 update_button.grid(row=5, column=0, columnspan=2)
 
+# update_button: these codes create a button labeled "Update Parameters" in the specified GUI window or frame (root), and when the button is clicked, it triggers the update_parameters function. In sum, when user click the update button, the data will be renewed.
+
 play_button = ttk.Button(root, text="Play Waveform", command=play_waveform)
 play_button.grid(row=6, column=0, columnspan=2)
+# Setup the play button.
 
 root.mainloop()
+# Initiates the event loop that keeps the GUI application running and handling user events until the user decides to close the application.
