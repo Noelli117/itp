@@ -83,7 +83,7 @@ k = 5
 generate_waveform()
 
 # UI Elements
-I asked gpt how to setup these labels and button:
+## I asked gpt how to setup these labels and button:
 sample_rate_label = tk.Label(root, text="Sample Rate:")
 #Labels are used to display static text or instructions to the user.
 In this code, sample_rate_label is a label widget created using tk.Label that displays the text "Sample Rate:".
@@ -129,7 +129,7 @@ modulation_index_entry = ttk.Entry(root)
 modulation_index_entry.grid(row=4, column=1)
 modulation_index_entry.insert(0, str(k))
 
-# Pretty much just copy and paste these lines and replace variable with other parameters.
+# Pretty much just copy and paste these lines and replace variables with other parameters.
 
 update_button = ttk.Button(root, text="Update Parameters", command=update_parameters)
 update_button.grid(row=5, column=0, columnspan=2)
