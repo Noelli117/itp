@@ -33,7 +33,8 @@ k=Modulator index,the modulation index is defined as the ratio of frequency devi
 
 # Explaination of function above:
 t = np.linspace(0, duration_s, int(f_s * duration_s), False)
-#This line creates a time array t using NumPy's linspace function. It starts from 0 seconds, ends at duration_s seconds, and contains f_s * duration_s samples.The time array is set up to create a sequence of time points that correspond to the duration of the waveform.
+#This line creates a time array t using NumPy's linspace function. It starts from 0 seconds, ends at duration_s seconds, and contains f_s * duration_s samples.The time array is set up to create a sequence of time points that correspond to the duration of the waveform.'Flase' indicates whether to include the endpoint (duration_s) in the array. Since it's set to False, the endpoint is not included.
+
 
 carrier = np.sin(2 * np.pi * f_c * t)
 #Here, carrier represents the carrier wave.The formula used (np.sin(2 * np.pi * f_c * t)) generates a sine wave with a frequency of f_c Hz over time t.
@@ -97,10 +98,9 @@ sample_rate_entry = ttk.Entry(root)
 #Entry fields provide a space for users to input data, such as numbers or text.
 sample_rate_entry is an entry field widget created using ttk.Entry where users can input the sample rate value.
 sample_rate_entry.grid(row=0, column=1)
-#Same as above.
 
 sample_rate_entry.insert(0, str(f_s))
-#sample_rate_entry: This seems to be a variable or object representing an entry widget in the GUI. An entry widget is typically used to allow users to input or edit text.
+#sample_rate_entry: This is an entry widget in the GUI. An entry widget is typically used to allow users to input or edit text.
 .insert(0, str(f_s)): This part of the code is using the .insert() method to insert text into the sample_rate_entry widget.
 0: This indicates the index position at which the text will be inserted. In this case, 0 means the text will be inserted at the beginning of the entry widget, effectively replacing any existing text.
 str(f_s): This converts the value of f_s (which seems to be a variable) into a string. The str() function is used to convert non-string objects into strings so they can be displayed or manipulated as text.
